@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Patents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Owner</th>
+      <th>Nature of Invention</th>
+      <th>Country</th>
+      <th>Filing Date</th>
+      <th>Issue Date</th>
+      <th>Application No.</th>
+      <th>Patent No.</th>
+      <th>Status</th>
+      <th>Status Date</th>
+      <th>Due Date</th>
+      <th>2nd Due Date</th>
+      <th>3rd Due Date</th>
+      <th>Comments</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patents.each do |patent| %>
+      <tr>
+        <td><%= patent.owner %></td>
+        <td><%= patent.natureOfInvention %></td>
+        <td><%= patent.country %></td>
+        <td><%= patent.filingDate %></td>
+        <td><%= patent.issueDate %></td>
+        <td><%= patent.applicationNumber %></td>
+        <td><%= patent.patentNumber %></td>
+        <td><%= patent.status %></td>
+        <td><%= patent.statusDate %></td>
+        <td><%= patent.dueDate %></td>
+        <td><%= patent.secondDueDate %></td>
+        <td><%= patent.thirdDueDate %></td>
+        <td><%= patent.comments %></td>
+        <td><%= link_to 'Show', patent %></td>
+        <td><%= link_to 'Edit', edit_patent_path(patent) %></td>
+        <td><%= link_to 'Destroy', patent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Patent', new_patent_path %>

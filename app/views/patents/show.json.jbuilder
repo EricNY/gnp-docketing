@@ -1,0 +1,1 @@
+json.extract! @patent, :id, :owner, :natureOfInvention, :country, :filingDate, :issueDate, :applicationNumber, :patentNumber, :status, :statusDate, :dueDate, :secondDueDate, :thirdDueDate, :comments, :created_at, :updated_at

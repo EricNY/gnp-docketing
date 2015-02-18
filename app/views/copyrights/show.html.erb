@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @copyright.owner %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @copyright.author %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @copyright.workType %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @copyright.title %>
+</p>
+
+<p>
+  <strong>Published Date:</strong>
+  <%= @copyright.publishedDate %>
+</p>
+
+<p>
+  <strong>Registration Date:</strong>
+  <%= @copyright.registrationDate %>
+</p>
+
+<p>
+  <strong>Registration No.:</strong>
+  <%= @copyright.registrationNumber %>
+</p>
+
+<%= link_to 'Edit', edit_copyright_path(@copyright) %> |
+<%= link_to 'Copyrights Index', copyrights_path %> |
+<%= link_to 'Create New Copyright', new_copyright_path %>

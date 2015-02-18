@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Trademarks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Owner</th>
+      <th>Mark</th>
+      <th>Country</th>
+      <th>IC</th>
+      <th>Goods and Services</th>
+      <th>Filing Date</th>
+      <th>Registration Date</th>
+      <th>Application No.</th>
+      <th>Registration No.</th>
+      <th>Status</th>
+      <th>Status Date</th>
+      <th>Due Date</th>
+      <th>Second Due Date</th>
+      <th>Comments</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trademarks.each do |trademark| %>
+      <tr>
+        <td><%= trademark.owner %></td>
+        <td><%= trademark.mark %></td>
+        <td><%= trademark.country %></td>
+        <td><%= trademark.ic %></td>
+        <td><%= trademark.goodsAndServices %></td>
+        <td><%= trademark.filingDate %></td>
+        <td><%= trademark.registrationDate %></td>
+        <td><%= trademark.applicationNumber %></td>
+        <td><%= trademark.registrationNumber %></td>
+        <td><%= trademark.status %></td>
+        <td><%= trademark.statusDate %></td>
+        <td><%= trademark.dueDate %></td>
+        <td><%= trademark.secondDueDate %></td>
+        <td><%= trademark.comments %></td>
+        <td><%= link_to 'Show', trademark %></td>
+        <td><%= link_to 'Edit', edit_trademark_path(trademark) %></td>
+        <td><%= link_to 'Destroy', trademark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trademark', new_trademark_path %>

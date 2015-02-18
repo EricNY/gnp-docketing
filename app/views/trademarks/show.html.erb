@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @trademark.owner %>
+</p>
+
+<p>
+  <strong>Mark:</strong>
+  <%= @trademark.mark %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @trademark.country %>
+</p>
+
+<p>
+  <strong>IC:</strong>
+  <%= @trademark.ic %>
+</p>
+
+<p>
+  <strong>Goods and Services:</strong>
+  <%= @trademark.goodsAndServices %>
+</p>
+
+<p>
+  <strong>Filing Date:</strong>
+  <%= @trademark.filingDate %>
+</p>
+
+<p>
+  <strong>Registration Date:</strong>
+  <%= @trademark.registrationDate %>
+</p>
+
+<p>
+  <strong>Application No.:</strong>
+  <%= @trademark.applicationNumber %>
+</p>
+
+<p>
+  <strong>Registration No.:</strong>
+  <%= @trademark.registrationNumber %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @trademark.status %>
+</p>
+
+<p>
+  <strong>Status Date:</strong>
+  <%= @trademark.statusDate %>
+</p>
+
+<p>
+  <strong>Due Date:</strong>
+  <%= @trademark.dueDate %>
+</p>
+
+<p>
+  <strong>Second Due Date:</strong>
+  <%= @trademark.secondDueDate %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @trademark.comments %>
+</p>
+
+<%= link_to 'Edit', edit_trademark_path(@trademark) %> |
+<%= link_to 'Trademarks Index', trademarks_path %> |
+<%= link_to 'Create New Trademark', new_trademark_path %>

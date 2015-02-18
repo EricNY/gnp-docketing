@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @patent.owner %>
+</p>
+
+<p>
+  <strong>Nature of Invention:</strong>
+  <%= @patent.natureOfInvention %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @patent.country %>
+</p>
+
+<p>
+  <strong>Filing Date:</strong>
+  <%= @patent.filingDate %>
+</p>
+
+<p>
+  <strong>Issue Date:</strong>
+  <%= @patent.issueDate %>
+</p>
+
+<p>
+  <strong>Application No.:</strong>
+  <%= @patent.applicationNumber %>
+</p>
+
+<p>
+  <strong>Patent No.:</strong>
+  <%= @patent.patentNumber %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @patent.status %>
+</p>
+
+<p>
+  <strong>Status Date:</strong>
+  <%= @patent.statusDate %>
+</p>
+
+<p>
+  <strong>Due Date:</strong>
+  <%= @patent.dueDate %>
+</p>
+
+<p>
+  <strong>Second Due Date:</strong>
+  <%= @patent.secondDueDate %>
+</p>
+
+<p>
+  <strong>Third Due Date:</strong>
+  <%= @patent.thirdDueDate %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @patent.comments %>
+</p>
+
+<%= link_to 'Edit', edit_patent_path(@patent) %> |
+<%= link_to 'Patents Index', patents_path %> |
+<%= link_to 'Create New Patent', new_patent_path %>

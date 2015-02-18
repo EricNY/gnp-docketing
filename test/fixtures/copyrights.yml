@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner: MyString
+  author: MyString
+  workType: MyString
+  title: MyString
+  publishedDate: 2015-02-16
+  registrationDate: 2015-02-16
+  registrationNumber: 1
+
+two:
+  owner: MyString
+  author: MyString
+  workType: MyString
+  title: MyString
+  publishedDate: 2015-02-16
+  registrationDate: 2015-02-16
+  registrationNumber: 1

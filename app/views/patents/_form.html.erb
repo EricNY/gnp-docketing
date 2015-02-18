@@ -1,0 +1,182 @@
+<%= form_for(@patent) do |f| %>
+  <% if @patent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@patent.errors.count, "error") %> prohibited this patent from being saved:</h2>
+
+      <ul>
+      <% @patent.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :owner %><br>
+    <%= f.text_field :owner %>
+  </div>
+  <div class="field">
+    <%= f.label :natureOfInvention, "Nature of Invention" %><br>
+    <%= f.text_area :natureOfInvention %>
+  </div>
+  <div class="field">
+    <%= f.label :country %><br>
+    <%= f.text_field :country %>
+  </div>
+  <div class="field">
+    <%= f.label :filingDate, "Filing Date" %><br>
+    <%= f.date_select :filingDate, include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :issueDate, "Issue Date" %><br>
+    <%= f.date_select :issueDate, include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :applicationNumber, "Application Number" %><br>
+    <%= f.number_field :applicationNumber %>
+  </div>
+  <div class="field">
+    <%= f.label :patentNumber, "Patent Number" %><br>
+    <%= f.number_field :patentNumber %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.select(:status, ["Provisional Application", "Notice to File Missing Parts", "Restriction requirement", "Office action", "Extension 1", "Extension 2", "Extension 3", "NOA", "Issued",
+      "Design Patent", "Utility Patent"], {include_blank: '-- choose a status --'}) %>
+  </div>
+  <div class="field">
+    <%= f.label :statusDate, "Status Date" %><br>
+    <%= f.date_select :statusDate, include_blank: true %>
+    <button type="button" onClick="calculateDueDates()">Calculate Due Date(s)</button>
+  </div>
+  <div class="field" id="due_date" style="display:none">
+    <%= f.label :dueDate, "Due Date" %><br>
+    <%= f.date_select :dueDate, include_blank: true, end_year: 2050 %>
+  </div>
+  <div class="field" id="second_due_date" style="display:none">
+    <%= f.label :secondDueDate, "Second Due Date" %><br>
+    <%= f.date_select :secondDueDate, include_blank: true, end_year: 2050 %>
+  </div>
+  <div class="field" id="third_due_date" style="display:none">
+    <%= f.label :thirdDueDate, "Third Due Date" %><br>
+    <%= f.date_select :thirdDueDate, include_blank: true, end_year: 2050 %>
+  </div>
+  <div class="field">
+    <%= f.label :comments %><br>
+    <%= f.text_area :comments %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+
+<script type="text/javascript">
+
+var calculateDueDates = function(){
+  var status = document.getElementById("patent_status").value,
+    year = document.getElementById("patent_statusDate_1i").value,
+    month = document.getElementById("patent_statusDate_2i").value,
+    day = document.getElementById("patent_statusDate_3i").value,
+    new_date_and_month = {};
+
+  if (status == 'Issued') {
+    new_date_and_month = addTime(month, year, 0, 3);
+    document.getElementById("patent_dueDate_1i").value = new_date_and_month["year"];
+    document.getElementById("patent_dueDate_2i").value = new_date_and_month["month"];
+    document.getElementById("patent_dueDate_3i").value = day;
+    document.getElementById("due_date").style.display="block";
+
+    new_date_and_month = addTime(month, year, 0, 7);
+    document.getElementById("patent_secondDueDate_1i").value = new_date_and_month["year"];
+    document.getElementById("patent_secondDueDate_2i").value = new_date_and_month["month"];
+    document.getElementById("patent_secondDueDate_3i").value = day;
+    document.getElementById("second_due_date").style.display="block";
+
+    new_date_and_month = addTime(month, year, 0, 11);
+    document.getElementById("patent_thirdDueDate_1i").value = new_date_and_month["year"];
+    document.getElementById("patent_thirdDueDate_2i").value = new_date_and_month["month"];
+    document.getElementById("patent_thirdDueDate_3i").value = day;
+    document.getElementById("third_due_date").style.display="block";    
+
+    return
+
+  } else if (status == 'Provisional Application') {
+
+    new_date_and_month = addTime(month, year, 0, 1);
+
+  } else if (status == 'Notice to File Missing Parts' || status == 'Restriction requirement') {
+  
+    new_date_and_month = addTime(month, year, 2, 0);
+  
+  } else if (status == 'Office action' || status == 'NOA') {
+  
+    new_date_and_month = addTime(month, year, 3, 0);
+  
+  } else if (status == 'Design Patent') {
+  
+    new_date_and_month = addTime(month, year, 0, 14);
+  
+  } else if (status == 'Utility Patent') {
+  
+    new_date_and_month = addTime(month, year, 0, 20);
+  
+  } else {
+  
+    new_date_and_month = addTime(month, year, 1, 0);
+  
+  }
+
+  document.getElementById("patent_dueDate_1i").value = new_date_and_month["year"];
+  document.getElementById("patent_dueDate_2i").value = new_date_and_month["month"];
+  document.getElementById("patent_dueDate_3i").value = day;
+  document.getElementById("due_date").style.display="block";
+
+};
+
+var addTime = function(month, year, month_offset, year_offset){
+  var month = parseInt(month),
+      year = parseInt(year),
+      month_total = month + month_offset,
+      year_total = year + year_offset;
+
+  if (month_total > 12) {
+    month_total = month_total % 12;
+    year_total = year_total + 1;
+  }
+
+  return {"month": month_total, "year": year_total};
+
+};
+
+</script>
+
+
+<!-- 
+Provisional Application  1 years
+
+Notice to File Missing Parts- 2 months out
+Restriction requirement - 2 months 
+
+Office action > 3 months
+NOA-3 months
+
+Extension 1-1 month
+Extension 2-1 month
+Extension 3-1 month
+
+
+
+Design Patent - 14 years
+
+Utility Patent -20 years -->
+
+
+
+
+
+
+
+

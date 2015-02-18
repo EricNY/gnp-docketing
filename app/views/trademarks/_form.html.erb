@@ -1,0 +1,131 @@
+<%= form_for(@trademark) do |f| %>
+  <% if @trademark.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trademark.errors.count, "error") %> prohibited this trademark from being saved:</h2>
+
+      <ul>
+      <% @trademark.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :owner %><br>
+    <%= f.text_field :owner %>
+  </div>
+  <div class="field">
+    <%= f.label :mark %><br>
+    <%= f.text_field :mark %>
+  </div>
+  <div class="field">
+    <%= f.label :country %><br>
+    <%= f.text_field :country %>
+  </div>
+  <div class="field">
+    <%= f.label :ic, "IC" %><br>
+    <%= f.text_field :ic %>
+  </div>
+  <div class="field">
+    <%= f.label :goodsAndServices, "Goods And Services" %><br>
+    <%= f.text_area :goodsAndServices %>
+  </div>
+  <div class="field">
+    <%= f.label :filingDate, "Filing Date" %><br>
+    <%= f.date_select :filingDate, include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :registrationDate, "Registration Date" %><br>
+    <%= f.date_select :registrationDate, include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :applicationNumber, "Application Number" %><br>
+    <%= f.number_field :applicationNumber %>
+  </div>
+  <div class="field">
+    <%= f.label :registrationNumber, "Registration Number" %><br>
+    <%= f.number_field :registrationNumber %>
+  </div>
+  <div id="status" class="field">
+    <%= f.label :status %><br>
+    <%= f.select(:status, ["Pending", "Published", "NOA", "Notice of Abandonment", "Office Action", "Extenstion 1", 
+      "Extenstion 2", "Extenstion 3", "Extenstion 4", "Extenstion 5", "Registration Date"], {include_blank: '-- choose a status --'}) %>
+  </div>
+  <div class="field">
+    <%= f.label :statusDate, "Status Date" %><br>
+    <%= f.date_select :statusDate, include_blank: true %>
+    <button type="button" onClick="calculateDueDates()">Calculate Due Date(s)</button>
+  </div>
+  <div class="field" id="due_date" style="display:none">
+    <%= f.label :dueDate, "Due Date" %><br>
+    <%= f.date_select :dueDate, include_blank: true, end_year: 2040 %>
+  </div>
+  <div class="field" id="second_due_date" style="display:none">
+    <%= f.label :secondDueDate, "Second Due Date" %><br>
+    <%= f.date_select :secondDueDate, include_blank: true, end_year: 2040 %>
+  </div>
+  <div class="field">
+    <%= f.label :comments %><br>
+    <%= f.text_area :comments %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+<script type="text/javascript">
+
+var calculateDueDates = function(){
+  var status = document.getElementById("trademark_status").value,
+    year = document.getElementById("trademark_statusDate_1i").value,
+    month = document.getElementById("trademark_statusDate_2i").value,
+    day = document.getElementById("trademark_statusDate_3i").value,
+    new_date_and_month = {};
+
+  if (status == 'Notice of Abandonment') {
+    new_date_and_month = addTime(month, year, 2, 0);
+    document.getElementById("trademark_dueDate_1i").value = new_date_and_month["year"];
+    document.getElementById("trademark_dueDate_2i").value = new_date_and_month["month"];
+    document.getElementById("trademark_dueDate_3i").value = day;
+    document.getElementById("due_date").style.display="block";
+
+  } else if (status == 'Registration Date') {
+    new_date_and_month = addTime(month, year, 0, 5);
+    document.getElementById("trademark_dueDate_1i").value = new_date_and_month["year"];
+    document.getElementById("trademark_dueDate_2i").value = new_date_and_month["month"];
+    document.getElementById("trademark_dueDate_3i").value = day;
+    document.getElementById("due_date").style.display="block";
+
+    new_date_and_month = addTime(month, year, 0, 10);
+    document.getElementById("trademark_secondDueDate_1i").value = new_date_and_month["year"];
+    document.getElementById("trademark_secondDueDate_2i").value = new_date_and_month["month"];
+    document.getElementById("trademark_secondDueDate_3i").value = day;
+    document.getElementById("second_due_date").style.display="block";
+  } else {
+    new_date_and_month = addTime(month, year, 6, 0);
+    document.getElementById("trademark_dueDate_1i").value = new_date_and_month["year"];
+    document.getElementById("trademark_dueDate_2i").value = new_date_and_month["month"];
+    document.getElementById("trademark_dueDate_3i").value = day;
+    document.getElementById("due_date").style.display="block";
+  };
+};
+
+var addTime = function(month, year, month_offset, year_offset){
+  var month = parseInt(month),
+      year = parseInt(year),
+      month_total = month + month_offset,
+      year_total = year + year_offset;
+
+  if (month_total > 12) {
+    month_total = month_total % 12;
+    year_total = year_total + 1;
+  }
+
+  return {"month": month_total, "year": year_total};
+
+};
+
+</script>

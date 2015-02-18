@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner: MyString
+  natureOfInvention: MyText
+  country: MyString
+  filingDate: 2015-02-14
+  issueDate: 2015-02-14
+  applicationNumber: 1
+  patentNumber: 1
+  status: MyString
+  statusDate: 2015-02-14
+  dueDate: 2015-02-14
+  secondDueDate: 2015-02-14
+  thirdDueDate: 2015-02-14
+  comments: MyText
+
+two:
+  owner: MyString
+  natureOfInvention: MyText
+  country: MyString
+  filingDate: 2015-02-14
+  issueDate: 2015-02-14
+  applicationNumber: 1
+  patentNumber: 1
+  status: MyString
+  statusDate: 2015-02-14
+  dueDate: 2015-02-14
+  secondDueDate: 2015-02-14
+  thirdDueDate: 2015-02-14
+  comments: MyText

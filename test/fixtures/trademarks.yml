@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner: MyString
+  mark: MyString
+  country: MyString
+  ic: MyString
+  goodsAndServices: MyText
+  filingDate: 2015-02-14
+  registrationDate: 2015-02-14
+  applicationNumber: 1
+  registrationNumber: 1
+  status: MyString
+  statusDate: 2015-02-14
+  dueDate: 2015-02-14
+  secondDueDate: 2015-02-14
+  comments: MyText
+
+two:
+  owner: MyString
+  mark: MyString
+  country: MyString
+  ic: MyString
+  goodsAndServices: MyText
+  filingDate: 2015-02-14
+  registrationDate: 2015-02-14
+  applicationNumber: 1
+  registrationNumber: 1
+  status: MyString
+  statusDate: 2015-02-14
+  dueDate: 2015-02-14
+  secondDueDate: 2015-02-14
+  comments: MyText
