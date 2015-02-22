@@ -24,8 +24,10 @@
 <% else %>
   <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
+</p>
 
 <%= yield %>
-| <%= link_to 'Home', welcome_index_path %>
+<br>
+<%= link_to 'Home', welcome_index_path %>
 </body>
 </html>
